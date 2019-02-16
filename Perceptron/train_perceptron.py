@@ -7,11 +7,13 @@ matplotlib.use("TkAgg")
 from matplotlib import pyplot as plt
 from matplotlib.colors import ListedColormap
 
-df = pd.read_csv('./datasets/iris.data', header=None)
+df = pd.read_csv('../datasets/iris.data', header=None)
 
 # print(df.tail())
 
 Y = df.iloc[0:100, 4].values
+
+# only training for 2 classes atm
 Y = np.where(Y == 'Iris-setosa', 1, -1)
 
 # extract sepal length and petal length
@@ -33,6 +35,7 @@ ppn.fit(X, Y)
 plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
 plt.xlabel('Epochs')
 plt.ylabel('Number of update')
-print(ppn.errors_)
+print('Errors: ', ppn.errors_)
+print('see the lovely converging graph now : )')
 
 plt.show()
